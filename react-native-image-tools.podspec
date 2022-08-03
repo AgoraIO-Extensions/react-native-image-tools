@@ -14,7 +14,7 @@ Pod::Spec.new do |s|
   s.platform = :ios, "8.0"
 
   s.preserve_paths = 'README.md', 'LICENSE', 'package.json', 'index.js'
-  s.source_files   = "ios/RCTImagetools/*.{h,m}"
+  s.source_files   = "ios/RCTImagetools/*.{h,m,mm}"
 
   s.dependency 'React'
 end

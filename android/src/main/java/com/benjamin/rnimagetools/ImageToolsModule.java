@@ -102,7 +102,7 @@ public class ImageToolsModule extends ReactContextBaseJavaModule {
             response.putInt("height", sourceImage.getHeight());
 
             WritableArray datas = Arguments.createArray();
-            int[] RGBAs = ImageTools.GetImageRGBAs(sourceImage);
+            byte[] RGBAs = ImageTools.GetImageRGBAs(sourceImage);
             for (int i = 0; i < RGBAs.length; i++) {
                 datas.pushInt(RGBAs[i]);
             }

@@ -228,8 +228,8 @@ public class ImageTools {
         int width = orgPic.getWidth();
         int height = orgPic.getHeight();
 
-        Bitmap binarymap = null;  
-        binarymap = orgPic.copy(Bitmap.Config.ARGB_8888, true);  
+        Bitmap binarymap = null;
+        binarymap = orgPic.copy(Bitmap.Config.ARGB_8888, true);
 
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < height; j++) {
@@ -327,17 +327,29 @@ public class ImageTools {
     /**
      * Get image's RGBA array.
      */
-    public static int[] GetImageRGBAs(Bitmap sourceImage) throws IOException  {
+    public static byte[] GetImageRGBAs(Bitmap sourceImage) throws IOException  {
 
         if (sourceImage != null) {
             int width = sourceImage.getWidth();
             int height = sourceImage.getHeight();
             int pixels[] = new int[width * height];
+            byte[] bytes = new byte[pixels.length * 4];
             sourceImage.getPixels(pixels, 0, width, 0, 0, width, height);
-
-            return pixels;
+            int i = 0;
+            for (int pixel : pixels) {
+              // Get components assuming is ARGB
+              int A = (pixel >> 24) & 0xff;
+              int R = (pixel >> 16) & 0xff;
+              int G = (pixel >> 8) & 0xff;
+              int B = pixel & 0xff;
+              bytes[i++] = (byte) R;
+              bytes[i++] = (byte) G;
+              bytes[i++] = (byte) B;
+              bytes[i++] = (byte) A;
+            }
+            return bytes;
         }
-        return new int[1];
+        return new byte[1];
     }
 
     public static String bitmapToBase64(Bitmap bitmap) {

@@ -230,18 +230,9 @@ RCT_EXPORT_METHOD(GetImageRGBAs:(NSString *)path
 
         NSMutableArray *pixelArray = [NSMutableArray array];
 
-        int byteIndex = 0;
-        for (int ii = 0 ; ii < width * height ; ++ii)
+        for (int ii = 0 ; ii < width * height * 4 ; ++ii)
         {
-            int grey = (rawData[byteIndex] + rawData[byteIndex+1] + rawData[byteIndex+2]);
-
-            UInt32* pixelPtr = (UInt32*)(rawData + byteIndex);
-
-            UInt32 rgba = *(pixelPtr);
-            NSNumber * rgbaNumber = [NSNumber numberWithInt:rgba];
-            [pixelArray addObject:rgbaNumber];
-            
-            byteIndex += 4;
+            [pixelArray addObject:@(rawData[ii])];
         }
         
         CGColorSpaceRelease(colorSpace);
