@@ -1,26 +1,19 @@
-buildscript {
-    repositories {
-        jcenter()
-    }
-
-
-    dependencies {
-        classpath 'com.android.tools.build:gradle:2.2.3'
-    }
-}
-
 apply plugin: 'com.android.library'
 
+def safeExtGet(prop, fallback) {
+  rootProject.ext.has(prop) ? rootProject.ext.get(prop) : fallback
+}
+
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.3"
+    compileSdkVersion safeExtGet("compileSdkVersion", 28)
 
     defaultConfig {
-        minSdkVersion 16
-        targetSdkVersion 23
-        versionCode 1
-        versionName "1.0"
+      minSdkVersion safeExtGet('minSdkVersion', 16)
+      targetSdkVersion safeExtGet('targetSdkVersion', 28)
+      versionCode 1
+      versionName "1.0"
     }
+
     buildTypes {
         release {
             minifyEnabled false
