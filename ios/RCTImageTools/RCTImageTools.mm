@@ -129,11 +129,6 @@ RCT_EXPORT_METHOD(createBinaryImage:(NSString *)path
 
     NSString *extension = [format isEqualToString:@"PNG"] ? @"png" : @"jpg";
     NSString *fullPath;
-    
-    
-    NSString* fullPath;
-
-    NSString* fullPath;
     @try {
         fullPath = generateFilePath(extension, @"");
     } @catch (NSException *exception) {
@@ -168,11 +163,7 @@ RCT_EXPORT_METHOD(createBinaryImage:(NSString *)path
         NSData *dataImage = UIImagePNGRepresentation(image);
         NSString *base64 = [dataImage base64EncodedStringWithOptions:0];
 
-            NSDictionary *response = @{@"base64": base64};
-            NSDictionary *response = @{@"base64": base64};
-            
         NSDictionary *response = @{@"base64": base64};
-            
         callback(@[[NSNull null], response]);
     } else {
         if (!saveImage(fullPath, image, format, quality)) {
